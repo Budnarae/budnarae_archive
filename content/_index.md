@@ -1,6 +1,8 @@
 +++
-title = 'Posts'
 date = 2023-12-11T05:20:16Z
 +++
 
-testing start page
+*all you need is code*
+---
+  
+게임 개발, 그래픽스, 그 외 이것저것 올리는 블로그
