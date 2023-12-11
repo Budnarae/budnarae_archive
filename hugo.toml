@@ -1,0 +1,4 @@
+baseURL = 'https://Budnarae.github.io/'
+languageCode = 'en-us'
+title = 'budnarae archive'
+theme = "hugo-texify3"

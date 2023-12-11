@@ -1,0 +1,7 @@
+[submodule "themes/hugo-texify3"]
+	path = themes/hugo-texify3
+	url = https://github.com/michaelneuper/hugo-texify3.git
+[submodule "public"]
+	path = public
+	url = https://github.com/Budnarae/Budnarae.github.io.git
+	branch = main
