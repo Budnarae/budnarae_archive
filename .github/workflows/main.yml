@@ -24,7 +24,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ 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 }}
+          personal_token: ${{ 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 }}
           external_repository: Budnarae/Budnarae.github.io
           publish_dir: ./public
           #   keep_files: true
