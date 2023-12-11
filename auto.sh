@@ -1,6 +1,6 @@
 #!/bin/bash
 
-hugo -D
+hugo -t "hugo-texify3"
 git add .
 git commit -m "$1"
 git push origin main

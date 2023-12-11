@@ -1,8 +1,7 @@
 +++
-title = '유용한 링크 모음'
+title = "유용한 링크 모음"
 date = 2023-12-11T02:38:58Z
-draft = false
-tags = 'updating'
+tags = ["updating"]
 +++
 
 ### 유용한 링크 모음
