@@ -19,10 +19,10 @@ tags = ["data structure", "algorithm"]
 2. 모든 데이터는 int형이다 (main의 매개변수로 받으면 char **형태로 들어오지만, atoi를 이용해 변환한다).
 3. 모든 데이터는 서로 중복되지 않아야 한다.
 
-가장 간단하게 떠올릴 수 있는 방법은 모든 데이터를 서로 비교하는 것이다.
-
+가장 간단하게 떠올릴 수 있는 방법은 모든 데이터를 서로 비교하는 것이다.  
+  
 ```mermaid
-graph LR;
+graph LR
 	style A fill:#89cff0
 	style B fill:#acb1d6
 	A[16]  -->  B[32]
@@ -30,9 +30,9 @@ graph LR;
 	C  -->  D[...]
 	D  -->  E[16]
 ```
-
+  
 ```mermaid
-graph LR;
+graph LR
 	style A fill:#89cff0
 	style C fill:#acb1d6
 	A[16]  -->  B[32]
@@ -40,9 +40,9 @@ graph LR;
 	C  -->  D[...]
 	D  -->  E[16]
 ```
-
+  
 ```mermaid
-graph LR;
+graph LR
 	style A fill:#89cff0
 	style E fill:#ff91af
 	A[16]  -->  B[32]
@@ -50,19 +50,11 @@ graph LR;
 	C  -->  D[...]
 	D  -->  E[16]
 ```
-
-```mermaid
-graph LR
-    A[Hard edge] --> B(Round edge)
-    B --> C{Decision}
-    C --> D[Result one]
-    C --> E[Result two]
-```
-
+  
 그러나 이와 같은 방법은 O(n^2)의 시간 복잡도를 갖기 때문에 최적화에 불리하다.  
 내 주변의 동료들은 최적화를 포기하고 위의 방법을 사용하거나, 퀵 정렬을 이용해 데이터를 정렬한 후 i의 값을 1씩 늘리며 i, i + 1번째 원소를 서로 비교하는 방법을 사용하였다.  
-필자는 처음에는 이진탐색트리를 구현하였다.
-
+필자는 처음에는 이진탐색트리를 구현하였다.  
+  
 ```
 int main(int argc, char ** argv)
 {
