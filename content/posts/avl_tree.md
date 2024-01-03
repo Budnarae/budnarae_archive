@@ -248,28 +248,28 @@ method 2 runtime : 0.000650
 (LL 케이스)  
 ```mermaid
 graph TD
-style X fill:#89cff0
-style Y fill:#89cff0
-style Z fill:#89cff0
-Z[Z] --> Y[Y]
-Z --> d[T4]
-Y --> X[X]
-Y --> c[T3]
-X --> a[T1]
-X --> b[T2]
+	style X fill:#89cff0
+	style Y fill:#89cff0
+	style Z fill:#89cff0
+	Z[Z] --> Y[Y]
+	Z --> d[T4]
+	Y --> X[X]
+	Y --> c[T3]
+	X --> a[T1]
+	X --> b[T2]
 ```  
 아래와 같이 변환한다.  
 ```mermaid
 graph TD
-style X fill:#89cff0
-style Y fill:#89cff0
-style Z fill:#89cff0
-Y --> X[X]
-X --> a[T1]
-X --> b[T2]
-Y[Y] --> Z[Z]
-Z --> c[T3]
-Z --> d[T4]
+	style X fill:#89cff0
+	style Y fill:#89cff0
+	style Z fill:#89cff0
+	Y --> X[X]
+	X --> a[T1]
+	X --> b[T2]
+	Y[Y] --> Z[Z]
+	Z --> c[T3]
+	Z --> d[T4]
 ```  
   
   
@@ -277,28 +277,28 @@ Z --> d[T4]
   
 ```mermaid
 flowchart TD
-style X fill:#89cff0
-style Y fill:#89cff0
-style Z fill:#89cff0
+	style Y fill:#89cff0
+	style Z fill:#89cff0
 	Z[Z] --> Y[Y]
 	Y --> a[T1]
     Y --> X[X]
     X --> b[T2]
     X --> c[T3]
     Z --> d[T4]
+	style X fill:#89cff0
 ```  
 아래와 같이 변환한다.  
 ```mermaid
 graph TD
-style X fill:#89cff0
-style Y fill:#89cff0
-style Z fill:#89cff0
-Z[Z] --> X[X]
-X --> Y[Y]
-Y --> a[T1]
-Y --> b[T2]
-X --> c[T3]
-Z --> d[T4]
+	style X fill:#89cff0
+	style Y fill:#89cff0
+	style Z fill:#89cff0
+	Z[Z] --> X[X]
+	X --> Y[Y]
+	Y --> a[T1]
+	Y --> b[T2]
+	X --> c[T3]
+	Z --> d[T4]
 ```  
   
 오른쪽으로 치우친 경우 위의 경우를 대칭으로 적용한다.  
