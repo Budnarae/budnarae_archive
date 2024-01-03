@@ -70,12 +70,12 @@ graph TD
     style A fill:#89cff0
     style C fill:#89cff0
     style F fill:#89cff0
-    A[5] -> B[3]
-    A -> |5보다 크다| C[11]
-    B -> D[1]
-    B -> E[4]
-    C -> |11보다 작다| F[9]
-    C -> G[13]
+    A[5] --> B[3]
+    A --> |5보다 크다| C[11]
+    B --> D[1]
+    B --> E[4]
+    C --> |11보다 작다| F[9]
+    C --> G[13]
 ```  
   
 ```
