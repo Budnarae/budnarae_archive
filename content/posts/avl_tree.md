@@ -8,7 +8,7 @@ tags = ["data structure", "algorithm"]
 ## avl tree를 사용한 중복 검사
 ---
 
-### 1. 개요
+### 개요
 본문은 보다 효율적으로 중복 여부를 검사하기 위해 고민한 경험을 공유하기 위해 작성되었다.  
 이 주제를 고민하게 된 계기는 [42 서울](https://42seoul.kr/seoul42/main/view)의 2서클 과제인 push_swap이었다.  
 당장 push_swap의 모든 것을 알 필요는 없다. 그 내용이 방대할 뿐더러, 이 글의 내용을 이해하는 데 필요하지도 않기 때문이다.  
@@ -23,8 +23,8 @@ tags = ["data structure", "algorithm"]
 
 ```mermaid
 graph LR;
-	style  A  fill:#89cff0
-	style  B  fill:#acb1d6
+	style A fill:#89cff0
+	style B fill:#acb1d6
 	A[16]  -->  B[32]
 	B  -->  C[24]
 	C  -->  D[...]
@@ -33,8 +33,8 @@ graph LR;
 
 ```mermaid
 graph LR;
-	style  A  fill:#89cff0
-	style  C  fill:#acb1d6
+	style A fill:#89cff0
+	style C fill:#acb1d6
 	A[16]  -->  B[32]
 	B  -->  C[24]
 	C  -->  D[...]
@@ -43,8 +43,8 @@ graph LR;
 
 ```mermaid
 graph LR;
-	style  A  fill:#89cff0
-	style  E  fill:#ff91af
+	style A fill:#89cff0
+	style E fill:#ff91af
 	A[16]  -->  B[32]
 	B  -->  C[24]
 	C  -->  D[...]
@@ -52,15 +52,15 @@ graph LR;
 ```
 
 ```mermaid
-graph LR;
+graph LR
     A[Hard edge] --> B(Round edge)
     B --> C{Decision}
     C --> D[Result one]
     C --> E[Result two]
 ```
 
-그러나 이와 같은 방법은 O(n^2)의 시간 복잡도를 갖기 때문에 최적화에 불리하다.
-내 주변의 동료들은 최적화를 포기하고 위의 방법을 사용하거나, 퀵 정렬을 이용해 데이터를 정렬한 후 i의 값을 1씩 늘리며 i, i + 1번째 원소를 서로 비교하는 방법을 사용하였다.
+그러나 이와 같은 방법은 O(n^2)의 시간 복잡도를 갖기 때문에 최적화에 불리하다.  
+내 주변의 동료들은 최적화를 포기하고 위의 방법을 사용하거나, 퀵 정렬을 이용해 데이터를 정렬한 후 i의 값을 1씩 늘리며 i, i + 1번째 원소를 서로 비교하는 방법을 사용하였다.  
 필자는 처음에는 이진탐색트리를 구현하였다.
 
 ```
