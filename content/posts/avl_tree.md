@@ -244,7 +244,7 @@ method 2 runtime : 0.000650
   
 이를 해결하기 위해 사용하는 방법이 avl 트리이다. avl 트리란 왼쪽과 오른쪽의 깊이가 2 이상 차이날 때 아래와 같이 자동으로 균형을 회복하는 기능을 가진 트리이다.  
   
-(왼쪽으로 트리가 기울어진 경우. T1 ~ T4 포인터는 null을 가리키고 있어도 무방하다)
+(왼쪽으로 트리가 기울어진 경우. T1 ~ T4 포인터는 null을 가리키고 있어도 무방하다)  
 (LL 케이스)  
 ```mermaid
 graph TD
@@ -281,7 +281,7 @@ style X fill:#89cff0
 style Y fill:#89cff0
 style Z fill:#89cff0
 Z[Z] --> Y[Y]
-Y --> a[T1]
+Y <-- a[T1]
 Y --> X[X]
 X --> b[T2]
 X --> c[T3]
