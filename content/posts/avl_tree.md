@@ -224,7 +224,7 @@ method 2 runtime : 0.000236
   
 ```mermaid
 graph TD
-A[1] --> B[2]
+A[1] --> |부모보다 크다| B[2]
 B --> |부모보다 크다| C[3]
 C --> |부모보다 크다| D[4]
 D --> |부모보다 크다| E[5]
@@ -241,7 +241,7 @@ method 1 runtime : 0.000257
 found dup : 500
 method 2 runtime : 0.000650
 ```  
-
+  
 이를 해결하기 위해 사용하는 방법이 avl 트리이다. avl 트리란 왼쪽과 오른쪽의 깊이가 2 이상 차이날 때 아래와 같이 자동으로 균형을 회복하는 기능을 가진 트리이다.  
   
 (왼쪽으로 트리가 기울어진 경우. T1 ~ T4 포인터는 null을 가리키고 있어도 무방하다)
@@ -272,9 +272,9 @@ Z --> c[T3]
 Z --> d[T4]
 ```  
   
-
+  
 (LR 케이스의 경우 LL 케이스로 변환 후 처리한다.)  
-
+  
 ```mermaid
 graph TD
 style X fill:#89cff0
@@ -431,7 +431,7 @@ int main(int argc, char **argv)
 	printf("method 2 runtime : %f\n", (double)(end - start) / CLOCKS_PER_SEC);
 }
 ```  
-(출력결과)    
+(출력결과)  
 ```
 //길이 100짜리 정렬된 배열을 입력했을 때
 found dup : 100
