@@ -24,22 +24,22 @@ tags = ["data structure", "algorithm"]
 ```mermaid
 graph LR
 	style A fill:#89cff0
-	style B fill:#acb1d6
+	style B fill:#ffe599
 	A[16]  -->  B[32]
 	B  -->  C[24]
 	C  -->  D[...]
 	D  -->  E[16]
-```
+```  
   
 ```mermaid
 graph LR
 	style A fill:#89cff0
-	style C fill:#acb1d6
+	style C fill:#ffe599
 	A[16]  -->  B[32]
 	B  -->  C[24]
 	C  -->  D[...]
 	D  -->  E[16]
-```
+```  
   
 ```mermaid
 graph LR
@@ -49,11 +49,34 @@ graph LR
 	B  -->  C[24]
 	C  -->  D[...]
 	D  -->  E[16]
-```
+```  
   
 그러나 이와 같은 방법은 O(n^2)의 시간 복잡도를 갖기 때문에 최적화에 불리하다.  
 내 주변의 동료들은 최적화를 포기하고 위의 방법을 사용하거나, 퀵 정렬을 이용해 데이터를 정렬한 후 i의 값을 1씩 늘리며 i, i + 1번째 원소를 서로 비교하는 방법을 사용하였다.  
-필자는 처음에는 이진탐색트리를 구현하였다.  
+필자는 처음에는 이진탐색트리를 구현하였다. 
+이진탐색트리는 자식이 2개인 tree로 아래와 같은 구조를 가진다.   
+  
+```mermaid
+graph TD
+    A[5] --> |부모보다 작으면 왼쪽으로 간다| B[4]
+    A --> |부모보다 크면 오른쪽으로 간다| C[8]
+```  
+  
+평균적으로, 이진탐색트리는 모든 데이터와 값을 대조할 필요가 없으므로 효율적인 알고리즘이다.  
+  
+(9를 검색하는 경우)
+```mermaid
+graph TD
+    style A fill:#89cff0
+    style C fill:#89cff0
+    style F fill:#89cff0
+    A[5] -> B[3]
+    A -> |5보다 크다| C[11]
+    B -> D[1]
+    B -> E[4]
+    C -> |11보다 작다| F[9]
+    C -> G[13]
+```  
   
 ```
 int main(int argc, char ** argv)
