@@ -25,7 +25,9 @@ flowchart  LR
 	B  -->  C[24]
 	C  -->  D[...]
 	D  -->  E[16]
+```
 
+```mermaid
 flowchart  LR
 	style  A  fill:#89cff0
 	style  C  fill:#af99
@@ -33,7 +35,9 @@ flowchart  LR
 	B  -->  C[24]
 	C  -->  D[...]
 	D  -->  E[16]
+```
 
+```mermaid
 flowchart  LR
 	style  A  fill:#89cff0
 	style  E  fill:#ff91af
