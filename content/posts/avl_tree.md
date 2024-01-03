@@ -20,7 +20,7 @@ tags = ["data structure", "algorithm"]
 ```mermaid
 flowchart  LR
 	style  A  fill:#89cff0
-	style  B  fill:#af99
+	style  B  fill:#acb1d6
 	A[16]  -->  B[32]
 	B  -->  C[24]
 	C  -->  D[...]
@@ -30,7 +30,7 @@ flowchart  LR
 ```mermaid
 flowchart  LR
 	style  A  fill:#89cff0
-	style  C  fill:#af99
+	style  C  fill:#acb1d6
 	A[16]  -->  B[32]
 	B  -->  C[24]
 	C  -->  D[...]
