@@ -438,26 +438,31 @@ found dup : 100
 method 1 runtime : 0.000039
 found dup : 100
 method 2 runtime : 0.000042
+
 //길이 500짜리 정렬된 배열을 입력했을 때
 found dup : 500
 method 1 runtime : 0.000285
 found dup : 500
 method 2 runtime : 0.000254
+
 //길이 1000짜리 정렬된 배열을 입력했을 때
 found dup : 1000
 method 1 runtime : 0.000936
 found dup : 1000
 method 2 runtime : 0.000386
+
 //길이 100짜리 난수 배열을 입력했을 때
 found dup : 6202
 method 1 runtime : 0.000038
 found dup : 6202
 method 2 runtime : 0.000039
+
 //길이 500짜리 난수 배열을 입력했을 때
 found dup : 8144
 method 1 runtime : 0.000252
 found dup : 8144
 method 2 runtime : 0.000195
+
 //길이 1000짜리 난수 배열을 입력했을 때
 found dup : 8469
 method 1 runtime : 0.000941
