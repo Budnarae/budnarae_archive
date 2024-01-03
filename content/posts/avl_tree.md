@@ -5,7 +5,7 @@ tags = ["data structure", "algorithm"]
 +++
 
 ---
-## avl tree를 사용한 중복 검사
+## avl 트리를 사용한 중복 검사
 ---
 
 ### 개요
@@ -18,7 +18,10 @@ tags = ["data structure", "algorithm"]
 1. 데이터는 main 함수의 매개변수로 받는다.
 2. 모든 데이터는 int형이다 (main의 매개변수로 받으면 char **형태로 들어오지만, atoi를 이용해 변환한다).
 3. 모든 데이터는 서로 중복되지 않아야 한다.
-
+  
+---
+  
+### 문제해결 - 이진 탐색 트리
 가장 간단하게 떠올릴 수 있는 방법은 모든 데이터를 서로 비교하는 것이다.  
   
 ```mermaid
@@ -78,7 +81,37 @@ graph TD
     C --> G[13]
 ```  
   
+이를 코드로 구현한 내용은 아래와 같다.  
+  
 ```
+typedef struct s_node   //트리 구성 노드
+{
+	int data;
+	struct s_node *right;
+	struct s_node *left;
+}	t_node;
+
+int search_tree(t_node **tree, int s)
+{
+	if (*tree == 0) //포인터가 null을 가리키고 있다면 받아온 데이터로 새로운 노드를 생성한다.
+	{
+		*tree = (t_node *)calloc(1, sizeof(t_node));
+		if (*tree == 0)
+			return (-1);
+		(*tree) -> data = s;
+		return (0);
+	}
+	else
+	{
+		if ((*tree) -> data < s)    //현재 노드보다 값이 작다면 왼쪽으로 보낸다.
+			return (search_tree(&((*tree)->right), s));
+		else if ((*tree) -> data == s)  //현재 노드와 값이 같다면(중복이 존재한다면) 1을 반환하고 재귀를 종료한다.
+			return (1);
+		else
+			return (search_tree(&((*tree)->left), s));  //현재 노드보다 값이 크다면 오른쪽으로 보낸다.
+	}
+}
+
 int main(int argc, char ** argv)
 {
 	double start;       //검색 시작 시간
@@ -156,5 +189,63 @@ int main(int argc, char ** argv)
 }
 ```
 
+(출력 결과)  
+```
+//길이 500짜리 난수 배열을 입력했을 때
+found dup : 2378
+method 1 runtime : 0.000262
+found dup : 2378
+method 2 runtime : 0.000115
+
+//길이 1000짜리 난수 배열을 입력했을 때
+found dup : 7687
+method 1 runtime : 0.000937
+found dup : 7687
+method 2 runtime : 0.000236
+```  
+  
+평균적으로 방법 2가 더 빠른 것을 볼 수 있다.  
+  
 ---
 
+### avl 트리
+그러나 이진 탐색 트리는 한 가지 단점을 갖는다.  
+정렬된 배열이 입력으로 들어왔을 때 트리가 아래와 같은 모양으로 생성된다는 점이다.  
+  
+```mermaid
+A[1] --> B[2]
+B --> |부모보다 크다| C[3]
+C --> |부모보다 크다| D[4]
+D --> |부모보다 크다| E[5]
+E --> |부모보다 크다| F[6]
+F --> |부모보다 크다| E[...]
+```  
+  
+결과적으로 방법 1과 다를 바 없는 시간복잡도를 갖는다.  
+이를 해결하기 위해 사용하는 방법이 avl 트리이다. avl 트리란 왼쪽과 오른쪽의 깊이가 2 이상 차이날 때 아래와 같이 자동으로 균형을 회복하는 기능을 가진 트리이다.  
+  
+(왼쪽으로 트리가 기울어진 경우)
+(LL 케이스)  
+```mermaid
+style X fill:#89cff0
+style Y fill:#89cff0
+style Z fill:#89cff0
+Z[Z] --> Y[Y]
+Z --> d[T4]
+Y --> X[X]
+Y --> c[T3]
+X --> a[T1]
+X --> b[T2]
+```  
+아래와 같이 변환한다.  
+```mermaid
+style X fill:#89cff0
+style Y fill:#89cff0
+style Z fill:#89cff0
+Y[Y] --> Z[Z]
+Y --> X[X]
+X --> a[T1]
+X --> b[T2]
+Z --> c[T3]
+Z --> d[T4]
+```. 
