@@ -213,6 +213,7 @@ method 2 runtime : 0.000236
 정렬된 배열이 입력으로 들어왔을 때 트리가 아래와 같은 모양으로 생성된다는 점이다.  
   
 ```mermaid
+graph TD
 A[1] --> B[2]
 B --> |부모보다 크다| C[3]
 C --> |부모보다 크다| D[4]
@@ -227,6 +228,7 @@ F --> |부모보다 크다| E[...]
 (왼쪽으로 트리가 기울어진 경우)
 (LL 케이스)  
 ```mermaid
+graph TD
 style X fill:#89cff0
 style Y fill:#89cff0
 style Z fill:#89cff0
@@ -239,6 +241,7 @@ X --> b[T2]
 ```  
 아래와 같이 변환한다.  
 ```mermaid
+graph TD
 style X fill:#89cff0
 style Y fill:#89cff0
 style Z fill:#89cff0
