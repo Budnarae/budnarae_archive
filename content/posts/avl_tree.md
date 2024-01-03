@@ -18,7 +18,7 @@ tags = ["data structure", "algorithm"]
 가장 간단하게 떠올릴 수 있는 방법은 모든 데이터를 서로 비교하는 것이다.
 
 ```mermaid
-flowchart  LR
+graph LR;
 	style  A  fill:#89cff0
 	style  B  fill:#acb1d6
 	A[16]  -->  B[32]
@@ -28,7 +28,7 @@ flowchart  LR
 ```
 
 ```mermaid
-flowchart  LR
+graph LR;
 	style  A  fill:#89cff0
 	style  C  fill:#acb1d6
 	A[16]  -->  B[32]
@@ -38,7 +38,7 @@ flowchart  LR
 ```
 
 ```mermaid
-flowchart  LR
+graph LR;
 	style  A  fill:#89cff0
 	style  E  fill:#ff91af
 	A[16]  -->  B[32]
