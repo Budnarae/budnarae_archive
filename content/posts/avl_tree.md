@@ -281,10 +281,10 @@ style X fill:#89cff0
 style Y fill:#89cff0
 style Z fill:#89cff0
 Z[Z] --> Y[Y]
+Y --> a[T1]
 Y --> X[X]
 X --> b[T2]
 X --> c[T3]
-Y --> a[T1]
 Z --> d[Y4]
 ```  
 아래와 같이 변환한다.  
