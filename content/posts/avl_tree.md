@@ -276,16 +276,16 @@ Z --> d[T4]
 (LR 케이스의 경우 LL 케이스로 변환 후 처리한다.)  
   
 ```mermaid
-graph TD
+flowchart TD
 style X fill:#89cff0
 style Y fill:#89cff0
 style Z fill:#89cff0
-Z[Z] --> Y[Y]
-Y <-- a[T1]
-Y <-- X[X]
-X --> b[T2]
-X --> c[T3]
-Z --> d[T4]
+	Z[Z] --> Y[Y]
+	Y --> a[T1]
+    Y --> X[X]
+    X --> b[T2]
+    X --> c[T3]
+    Z --> d[T4]
 ```  
 아래와 같이 변환한다.  
 ```mermaid
