@@ -91,6 +91,16 @@ typedef struct s_node   //트리 구성 노드
 	struct s_node *left;
 }	t_node;
 
+void free_tree(t_node *tree)	//트리의 위에서 아래로 내려가면서 재귀적으로 할당을 해제
+{
+	if (tree -> right)
+		free_tree(tree -> right);
+	if (tree -> left)
+		free_tree(tree -> left);
+	if (tree)
+		free(tree);
+}
+
 int search_tree(t_node **tree, int s)
 {
 	if (*tree == 0) //포인터가 null을 가리키고 있다면 받아온 데이터로 새로운 노드를 생성한다.
@@ -221,7 +231,17 @@ D --> |부모보다 크다| E[5]
 E --> |부모보다 크다| F[6]
 ```  
   
-결과적으로 방법 1과 다를 바 없는 시간복잡도를 갖는다.  
+결과적으로 방법 1과 다를 바 없는 시간복잡도를 가지며, malloc과 free가 포함되기 때문에 오히려 느려진다.
+
+(출력결과)
+```
+\\길이 500짜리 정렬된 배열을 입력했을 때
+found dup : 500
+method 1 runtime : 0.000257
+found dup : 500
+method 2 runtime : 0.000650
+```  
+
 이를 해결하기 위해 사용하는 방법이 avl 트리이다. avl 트리란 왼쪽과 오른쪽의 깊이가 2 이상 차이날 때 아래와 같이 자동으로 균형을 회복하는 기능을 가진 트리이다.  
   
 (왼쪽으로 트리가 기울어진 경우)
@@ -251,3 +271,194 @@ Y[Y] --> Z[Z]
 Z --> c[T3]
 Z --> d[T4]
 ```  
+  
+
+(LR 케이스의 경우 LL 케이스로 변환 후 처리한다.)  
+
+```mermaid
+graph TD
+style X fill:#89cff0
+style Y fill:#89cff0
+style Z fill:#89cff0
+Z[Z] --> Y[Y]
+Y --> a[T1]
+Y --> X[X]
+X --> b[T2]
+X --> c[T3]
+Z --> d[Y4]
+```  
+아래와 같이 변환한다.  
+```mermaid
+graph TD
+style X fill:#89cff0
+style Y fill:#89cff0
+style Z fill:#89cff0
+Z[Z] --> X[X]
+X --> Y[Y]
+Y --> a[T1]
+Y --> b[T2]
+X --> c[T3]
+Z --> d[T4]
+```. 
+  
+오른쪽으로 치우친 경우 위의 경우를 대칭으로 적용한다.  
+이를 코드로 구현하면 아래와 같다.  
+  
+```
+void	left_case(t_node **tree)	//노드의 연결을 수정하여 트리의 균형을 맞춘다.
+{
+	t_node	*tmp1;
+	t_node	*tmp2;
+
+	if ((*tree)->left != 0)	//LR인 경우 LL로 전환
+	{
+		if ((*tree)->left->right != 0)
+		{
+			if ((*tree)->left->left == 0)
+			{
+				tmp1 = (*tree)->left;
+				tmp2 = (*tree)->left->right;
+				(*tree)->left = tmp2;
+				tmp2 = (*tree)->left->left;
+				(*tree)->left->left = tmp1;
+				(*tree)->left->left->right = tmp2;
+			}
+		}
+	}
+	/*
+	LL 케이스 처리
+	*/
+	tmp1 = *tree;
+	tmp2 = (*tree)->left;
+	*tree = tmp2;
+	tmp2 = (*tree)->right;
+	(*tree)->right = tmp1;
+	if ((*tree)->right != 0)
+		(*tree)->right->left = tmp2;
+}
+
+void	right_case(t_node **tree)
+{
+	t_node	*tmp1;
+	t_node	*tmp2;
+
+	if ((*tree)->right != 0)	//RL인 경우 RR로 전환
+	{
+		if ((*tree)->right->left != 0)
+		{
+			if ((*tree)->right->right == 0)
+			{
+				tmp1 = (*tree)->right;
+				tmp2 = (*tree)->right->left;
+				(*tree)->right = tmp2;
+				tmp2 = (*tree)->right->right;
+				(*tree)->right->right = tmp1;
+				(*tree)->right->right->left = tmp2;
+			}
+		}
+	}
+	/*
+	RR 케이스 처리
+	*/
+	tmp1 = *tree;
+	tmp2 = (*tree)->right;
+	*tree = tmp2;
+	tmp2 = (*tree)->left;
+	(*tree)->left = tmp1;
+	if ((*tree)->left != 0)
+		(*tree)->left->right = tmp2;
+}
+
+int	balance_tree(t_node **tree, int depht)	//트리의 균형을 맞추는 함수
+{
+	int	balance_parameter;
+	int	depht_l;	//왼쪽 트리의 깊이
+	int	depht_r;	//오른쪽 트리의 깊이
+
+	if (*tree == 0)
+		return (depht);
+	depht_l = balance_tree(&((*tree)->left), depht + 1);	//자식 노드 -> 부모 노드 순으로 함수가 실행된다. 자식 노드로 재귀할 때 깊이를 1 더한다.
+	depht_r = balance_tree(&((*tree)->right), depht + 1);
+	balance_parameter = depht_r - depht_l;	//balance_parameter의 절대값이 2 이상이면 균형을 맞춘다.
+	if (balance_parameter < -1)	//왼쪽으로 치우친 경우
+	{
+		left_case(tree);
+		return (depht_l - 1);	//깊이를 반환
+	}
+	else if (balance_parameter > 1)	//오른쪽으로 치우친 경우
+	{
+		right_case(tree);
+		return (depht_r - 1);	//깊이를 반환
+	}
+	if (depht_l > depht_r)	//트리의 깊이가 2 이상 차이나지 않을 경우, 깊이가 더 깊은 쪽을 반환
+		return (depht_l);
+	else
+		return (depht_r);
+}
+```  
+```
+int main(int argc, char **argv)
+{
+	(중략)
+	start = clock();
+
+	storage2 = 0;
+	i = 0;
+	while (i < argc - 1)
+	{
+		func_returned = search_tree(&storage2, atoi(argv[i + 1]));
+		if (func_returned == -1)
+		{
+			free_tree(storage2);
+			return (0);
+		}
+		else if (func_returned == 1)
+		{
+			printf("found dup : %d\n", atoi(argv[i + 1]));
+			break;
+		}
+		if (i % 50 == 0)	//50번에 한번씩 트리를 정렬
+			balance_tree(&storage2, 0);
+		i++;
+	}
+	free_tree(storage2);
+	end = clock();
+	printf("method 2 runtime : %f\n", (double)(end - start) / CLOCKS_PER_SEC);
+}
+```  
+(출력결과)    
+```
+//길이 100짜리 정렬된 배열을 입력했을 때
+found dup : 100
+method 1 runtime : 0.000039
+found dup : 100
+method 2 runtime : 0.000042
+//길이 500짜리 정렬된 배열을 입력했을 때
+found dup : 500
+method 1 runtime : 0.000285
+found dup : 500
+method 2 runtime : 0.000254
+//길이 1000짜리 정렬된 배열을 입력했을 때
+found dup : 1000
+method 1 runtime : 0.000936
+found dup : 1000
+method 2 runtime : 0.000386
+//길이 100짜리 난수 배열을 입력했을 때
+found dup : 6202
+method 1 runtime : 0.000038
+found dup : 6202
+method 2 runtime : 0.000039
+//길이 500짜리 난수 배열을 입력했을 때
+found dup : 8144
+method 1 runtime : 0.000252
+found dup : 8144
+method 2 runtime : 0.000195
+//길이 1000짜리 난수 배열을 입력했을 때
+found dup : 8469
+method 1 runtime : 0.000941
+found dup : 8469
+method 2 runtime : 0.000362
+```. 
+  
+balance_tree 함수가 실행시간을 많이 잡아먹기 때문에 50번에 한 번씩만 정렬하는 식으로 타협하여 구현하였다.  
+입력이 정렬된 상태로 들어올 때, 섞여서 들어올 때 모두 방법 1보다 비슷하거나 우월한 결과를 보인다.  
