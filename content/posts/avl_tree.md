@@ -282,7 +282,7 @@ style Y fill:#89cff0
 style Z fill:#89cff0
 Z[Z] --> Y[Y]
 Y <-- a[T1]
-Y --> X[X]
+Y <-- X[X]
 X --> b[T2]
 X --> c[T3]
 Z --> d[T4]
