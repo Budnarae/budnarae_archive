@@ -20,7 +20,7 @@ push_swap 과제에서 정렬하는 것 만큼이나 중요한 것은 ***가능�
 ### 문제해결
 ---
   
-![1](./img/push_swap_1.drawio.png)  
+![1](https://github.com/Budnarae/budnarae_archive/blob/main/content/posts/img/push_swap_1.drawio.png)  
   
 위와 같은 상황을 가정해보자. stack a에 데이터의 초기값, 그러니까 무작위로 뒤섞인 정수들이 차곡차곡 쌓인 상황이다. 정렬이 시작되기 전이어서 stack b는 비어있다. 우리는 앞서 언급한 연산자들을 적절히 활용하여, 데이터를 스택의 꼭대기나 바닥으로 보내기도 하고, stack a와 b를 왔다갔다 하기도 하면서 stack의 top으로 갈수록 값이 작아지도록 정렬해야한다. 그리고 그 정렬은 최종적으로 b 가 아닌 a에서 이루어져야 한다.  
   
@@ -36,22 +36,22 @@ push_swap 과제에서 정렬하는 것 만큼이나 중요한 것은 ***가능�
   
 위 과정을 수행하면 stack b에 아래와 같은 모양으로 값이 정렬된다.  
   
-![2](./img/push_swap_2.drawio.png). 
+![2](https://github.com/Budnarae/budnarae_archive/blob/main/content/posts/img/push_swap_2.drawio.png). 
   
 정렬된 최소 단위가 형성된 모습을 볼 수 있다. 정렬을 거꾸로 한 이유는 나중에 다시 a로 옮길 때 위아래가 뒤집어지기 때문이다.  
 이 최소 단위들을 아래와 같은 과정으로 병합한다.  
 
 1. 단위들의 1 / 3 개를 스택 a로 옮긴다. 1 / 2이 아닌 1 / 3 만큼 옮기는 이유는 한 번에 3개의 단위를 병합하는 것이 연산 개수 최적화에 유리하기 때문이다.  
 
-![3](./img/push_swap_3.drawio.png)
+![3](https://github.com/Budnarae/budnarae_archive/blob/main/content/posts/img/push_swap_3.drawio.png)
   
 2. a의 bot과 b의 top 중 더 큰 값을 a의 top으로 옮긴다. 두 최소단위가 완전히 병합될 때까지 이를 반복한다. b가 텅 빌때까지 반복한다.
   
 (첫 번째 병합 후)
-![4](./img/push_swap_4.drawio.png)
+![4](https://github.com/Budnarae/budnarae_archive/blob/main/content/posts/img/push_swap_4.drawio.png)
   
 (두 번째 병합 후)
-![5](./img/push_swap_5.drawio.png)
+![5](https://github.com/Budnarae/budnarae_archive/blob/main/content/posts/img/push_swap_5.drawio.png)
   
 위 예시에선 데이터의 개수가 적어 stack a, b를 한 번 왕복한 것만으로 정렬이 완료되었지만 데이터의 개수가 많을 때는 스택 간 왕복을 여러 번 수행해야 한다. a -> b 방향으로 병합을 수행할 때는 a의 top과 b의 bot 중 더 큰 값을 b의 top으로 옮기는 방법으로 병합시키면 된다.
 
@@ -78,7 +78,7 @@ push_swap 과제에서 정렬하는 것 만큼이나 중요한 것은 ***가능�
 
 위 방식을 사용하면 스택간 데이터의 이동 없이도 단위들을 1회 병합할 수 있게 된다. 따라서 전체적인 연산의 횟수가 줄어들게 된다.
 
-![6](./img/push_swap_6.drawio.png)
+![6](https://github.com/Budnarae/budnarae_archive/blob/main/content/posts/img/push_swap_6.drawio.png)
 
 그러나 처음부터 최초 단위를 병합에 활용하면 최초 단위에서만 병합이 이루어진다. 그러면 최초 단위의 크기만 지속적으로 커지기 때문에 rrb 연산이 지나치게 많아져 오히려 연산이 늘어난다. 이러한 케이스를 방지하기 위해 아래 조건을 충족하는 경우에만 최초 단위를 병합에 활용한다.  
   
