@@ -1,7 +1,7 @@
 +++
-title = 'avl tree를 이용한 중복값 검사'
+title = 'avl tree를 이용한 중복 검사'
 date = 2024-01-02T23:04:21Z
-tags = ["data structure", "algorithm"]
+tags = ["C_language", "data structure", "algorithm", "42seoul", "push_swap"]
 +++
 
 ---
