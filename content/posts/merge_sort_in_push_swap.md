@@ -4,21 +4,17 @@ date = 2024-02-21T02:23:56Z
 tags = ["C_language", "data structure", "algorithm", "42seoul", "push_swap"]
 +++
 
----
 ## 병합 정렬을 사용하여 push_swap 문제 해결하기
----
-
+  
 ### 개요
   
-[스택을 만들었으니]() 이제 정렬을 구현할 차례이다. 42_서울에는 그동안 push_swap 과제를 해결한 수많은 사람들이 축척한 다양한 문제 해결법들이 존재한다. 필자 외 다른 사람들의 해결법을 보고 싶다면 42 서울의 정보 아카이빙 동아리 [팔만코딩경](https://80000coding.oopy.io/aboutus)을 참고하거나, 구글링으로 필자처럼 개인 블로그에 정리한 카뎃들의 글을 참고하는 것을 추천한다.  
+[스택을 만들었으니](https://budnarae.github.io/posts/magical_stack/) 이제 정렬을 구현할 차례이다. 42_서울에는 그동안 push_swap 과제를 해결한 수많은 사람들이 축척한 다양한 문제 해결법들이 존재한다. 필자 외 다른 사람들의 해결법을 보고 싶다면 42 서울의 정보 아카이빙 동아리 [팔만코딩경](https://80000coding.oopy.io/aboutus)을 참고하거나, 구글링으로 필자처럼 개인 블로그에 정리한 카뎃들의 글을 참고하는 것을 추천한다.  
   
 push_swap 과제에서 정렬하는 것 만큼이나 중요한 것은 ***가능한 적은 연산***(sa, sb, ra 등등)을 사용하여 효울적으로 정렬을 수행하는 것이다. 100개의 인자가 들어왔을 때 연산 700번 이내, 이내, 500개의 인자가 들어왔을 때 5000번 이내로 정렬을 수행해야 만점을 받을 수 있다.  
   
 필자는 병합 정렬의 매커니즘을 사용하여 과제를 해결하였다.  
   
----
 ### 문제해결
----
   
 ![1](https://github.com/Budnarae/budnarae_archive/blob/main/content/posts/img/push_swap_1.drawio.png?raw=true)  
   
@@ -40,7 +36,7 @@ push_swap 과제에서 정렬하는 것 만큼이나 중요한 것은 ***가능�
   
 정렬된 최소 단위가 형성된 모습을 볼 수 있다. 정렬을 거꾸로 한 이유는 나중에 다시 a로 옮길 때 위아래가 뒤집어지기 때문이다.  
 이 최소 단위들을 아래와 같은 과정으로 병합한다.  
-
+  
 1. 단위들의 1 / 3 개를 스택 a로 옮긴다. 1 / 2이 아닌 1 / 3 만큼 옮기는 이유는 한 번에 3개의 단위를 병합하는 것이 연산 개수 최적화에 유리하기 때문이다.  
 
 ![3](https://github.com/Budnarae/budnarae_archive/blob/main/content/posts/img/push_swap_3.drawio.png?raw=true)
@@ -54,10 +50,8 @@ push_swap 과제에서 정렬하는 것 만큼이나 중요한 것은 ***가능�
 ![5](https://github.com/Budnarae/budnarae_archive/blob/main/content/posts/img/push_swap_5.drawio.png?raw=true)
   
 위 예시에선 데이터의 개수가 적어 stack a, b를 한 번 왕복한 것만으로 정렬이 완료되었지만 데이터의 개수가 많을 때는 스택 간 왕복을 여러 번 수행해야 한다. a -> b 방향으로 병합을 수행할 때는 a의 top과 b의 bot 중 더 큰 값을 b의 top으로 옮기는 방법으로 병합시키면 된다.
-
----
+  
 ### 아직 부족하다. 연산 개수 최적화하기
----
   
 위의 방식을 적용하면 정렬 자체는 정상적으로 수행되지만 만점을 받기에는 부족하다. 연산을 더 줄이려면 어떻게 해야할까? 이 알고리즘에서 수행되는 연산은 아래와 같이 분류할 수 있다.
 
