@@ -137,7 +137,7 @@ void	pipex(int argc, char ***args, char **envp)
 ./pipex infile "usr/bin/ls -l" "usr/bin/wc -l" outfile
 ```
   
-그러나 과제는 아래와 같은 입력도 처리할 수 있어야 한다. 하지만 execve 함수는 현재 디렉도리의 파일이 아닌 이상 절대 경로로만 파일명을 받을 수 있다.
+그러나 과제는 아래와 같은 입력도 처리할 수 있어야 한다. 하지만 execve 함수는 현재 디렉토리의 파일이 아닌 이상 절대 경로로만 파일명을 받을 수 있다.
   
 ```
 ./pipex infile "ls -l" "wc -l" outfile
